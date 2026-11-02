@@ -10,6 +10,8 @@ npm install
 npm run dev
 ```
 
+To build: `npm run build`.
+
 ## Components
 
 - `App`: puts the page together.
@@ -22,6 +24,9 @@ npm run dev
 - `SortSelect`: lets you choose the product order.
 - `Pagination`: shows the reference page buttons.
 - `Newsletter`: shows the email signup section.
+- `Footer`: shows the shop info, social icons and links.
+- `FooterLinks`: shows one group of footer links.
+- `Logo`: shows the shop logo in the header and footer.
 
 ## Props
 
@@ -31,8 +36,10 @@ npm run dev
 
 `App` passes `value` and `onChange` to `SortSelect` to update the order, and `currentPage` to `Pagination` to highlight page 1.
 
+`Footer` passes `title` and `links` to `FooterLinks`. `Header` passes `light` to `Logo` for its white version. `App` includes the newsletter and footer below the products.
+
 Props let the same components display different data without copying the code.
 
 Price sorting works. Newest restores the reference order. Best Selling is disabled because there is no sales data.
 
-The project is still in progress. Search, filters, product buttons and pagination are currently for the layout only. The email form checks the address but does not send subscriptions. The footer will be added next.
+Search, filters, product buttons, pagination and footer links are for the layout only, like the HTML reference. The email form checks the address but does not send subscriptions. Product images load from Unsplash and need an internet connection.

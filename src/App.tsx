@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Footer from './components/Footer'
 import Header from './components/Header'
 import Newsletter from './components/Newsletter'
 import Pagination from './components/Pagination'
@@ -39,6 +40,7 @@ function App() {
         </div>
       </main>
       <Newsletter />
+      <Footer />
     </div>
   )
 }

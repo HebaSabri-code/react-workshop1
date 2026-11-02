@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Menu, Package, Search, ShoppingBag, User, X } from 'lucide-react'
+import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
+import Logo from './Logo'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -9,12 +10,7 @@ function Header() {
     <header className="sticky top-0 z-40 bg-blue-600 text-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-2">
-          <a href="#" className="flex shrink-0 items-center gap-2">
-            <span className="rounded-lg bg-white p-2 text-blue-600">
-              <Package size={20} aria-hidden="true" />
-            </span>
-            <span className="text-lg font-bold tracking-tight sm:text-xl">LITE.SHOP</span>
-          </a>
+          <Logo light />
 
           <nav aria-label="Main navigation" className="hidden gap-6 lg:flex">
             {links.map((link) => (
@@ -58,7 +54,7 @@ function Header() {
               type="button"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
-              aria-controls="mobile-navigation"
+              aria-controls={isMenuOpen ? 'mobile-navigation' : undefined}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="rounded-xl border border-blue-400 p-2 hover:bg-blue-500 lg:hidden"
             >
