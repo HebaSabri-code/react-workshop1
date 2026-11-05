@@ -9,8 +9,11 @@ import SortSelect from './components/SortSelect'
 import { products } from './data/products'
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('newest')
-  const sortedProducts = [...products]
+  const sortedProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+  )
 
   if (sortBy === 'price-low') {
     sortedProducts.sort((a, b) => a.price - b.price)
@@ -20,7 +23,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      <Header />
+      <Header searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <Sidebar />
@@ -33,9 +36,12 @@ function App() {
               <h1 id="products-title" className="text-xl font-bold">Recommended for you</h1>
               <SortSelect value={sortBy} onChange={setSortBy} />
             </div>
+            <p role="status" className="mt-3 text-sm text-slate-500">
+              {sortedProducts.length} {sortedProducts.length === 1 ? 'product' : 'products'} found
+            </p>
             <div className="my-5 h-px bg-slate-100" />
             <ProductGrid products={sortedProducts} />
-            <Pagination currentPage={1} />
+            {sortedProducts.length > 0 && <Pagination currentPage={1} />}
           </section>
         </div>
       </main>

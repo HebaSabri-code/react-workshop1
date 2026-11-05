@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
+import { Menu, ShoppingBag, User, X } from 'lucide-react'
 import Logo from './Logo'
+import SearchInput from './SearchInput'
 
-function Header() {
+type HeaderProps = {
+  searchTerm: string
+  onSearchChange: (value: string) => void
+}
+
+function Header({ searchTerm, onSearchChange }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const links = ['New Arrival', 'Men', 'Women', 'Sale']
 
@@ -26,14 +32,8 @@ function Header() {
               Live
             </span>
 
-            <div className="relative hidden sm:block">
-              <Search size={16} aria-hidden="true" className="absolute top-3 left-3 text-blue-100" />
-              <input
-                type="search"
-                aria-label="Search products"
-                placeholder="Search products..."
-                className="h-10 w-40 rounded-xl border border-blue-400 bg-blue-500/30 pr-3 pl-9 text-xs placeholder:text-blue-100 focus:outline-2 focus:outline-white lg:w-44"
-              />
+            <div className="hidden w-40 sm:block lg:w-44">
+              <SearchInput value={searchTerm} onChange={onSearchChange} />
             </div>
 
             <button
@@ -61,6 +61,10 @@ function Header() {
               {isMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
+        </div>
+
+        <div className="pb-3 sm:hidden">
+          <SearchInput value={searchTerm} onChange={onSearchChange} />
         </div>
 
         {isMenuOpen && (
